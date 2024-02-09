@@ -1,0 +1,114 @@
+﻿@model EmployeeDetails.Models.Employee
+
+@{
+    ViewBag.Title = "Create";
+}
+
+
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-md-12">
+            <h3>Create Employee List</h3>
+        </div>
+    </div>
+   
+        
+            <form method="post" action="~/Home/Create"  class="was-validated">
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <div class="mb-3 form-group">
+                            <label>Name</label>
+                            <input type="text" name="name" class="form-control" required />
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback">Please fill out this field.</div>
+                        </div>
+
+                        <div class="mb-3 form-group">
+                            <label>Email</label>
+                            <input type="email" name="email" class="form-control"  required/>
+                            <div class="valid-feedback">valid</div>
+                            <div class="invalid-feedback"> enter valid email</div>
+                        </div>
+
+                        <div class="mb-3 form-group">
+                            <label>DateOfBirth</label>
+
+                            <div class="input-group date" id="datepicker">
+                                <input type="text" class="form-control" required name="DateOfBirth">
+                                <span class="input-group-append">
+                                    <span class="input-group-text bg-white">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                                </span>
+                            </div>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback">Please fill out this field.</div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3 form-group">
+                            <label>Experience</label>
+                            <select name="Experience" class="form-control" required>
+                                <option value="">Select Experience</option>
+                                <option value="Fresher">Fresher</option>
+                                <option value="Experience">Experience</option>
+                            </select>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback">Please fill out this field.</div>
+                        </div>
+                        <div class="mb-3 form-group">
+                            <label>Gender</label>
+                            <select name="gender" class="form-control" required>
+                                <option value="">Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback">Please fill out this field.</div>
+                        </div>
+                        <div class="mb-3 form-group">
+                            <label>Address</label>
+                            <textarea name="address" class="form-control" required></textarea>
+                            <div class="valid-feedback">Valid.</div>
+                            <div class="invalid-feedback">Please fill out this field.</div>
+                        </div>
+                    </div>
+                </div>
+               
+                
+               
+               
+                <div class="row">
+                    <div class="mb-3">
+                        <input type="submit" class="btn btn-primary" value="save"/>
+                        <a href="@Url.Action("Index","Home")" class="btn btn-info">Back to list</a>
+                    </div>
+                    
+                </div>
+            </form>
+    
+    
+</div>
+
+
+
+@section datapicker{
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+    <script>
+
+        $(function () {
+            $('#datepicker').datepicker();
+        });
+
+
+        
+
+    </script>
+}

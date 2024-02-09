@@ -1,0 +1,102 @@
+﻿@model List<EmployeeDetails.Models.Employee>
+
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Employee Details</h2>
+        </div>
+        <div class="col-md-6 text-end">
+            <a href="@Url.Action( "Create", "Home")" class="btn btn-primary">Create Employee List</a>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-md-12">
+            <table class="table table-bordered table-striped" id="tblEmployee">
+                <thead>
+                    <tr>
+                        <th>Employee Id</th>
+                        <th>Employee Name</th>
+                        <th>Email</th>
+                        <th>DateOfBirth</th>
+                        <th>Experience Level</th>
+                        <th>Gender</th>
+                        <th>Address</th>
+
+                    </tr>
+                </thead>
+
+            </table>
+            @section myDataTable{
+                <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+                <script>
+
+                    $(document).ready(function () {
+
+                        $('#tblEmployee').DataTable({
+
+                             "processing": true,
+                             "serverSide": true,
+                              "filter": true,
+                              "paging": true,
+                              "lengthMenu":[5,10,15,20],
+                               "responsive": true,
+                               "ajax": {
+                                  "url": "@Url.Action("LoadData")",
+                                  "datatype": "json",
+                                  "type":"POST"
+                               },
+
+                               "columnDefs": [
+                                                 { "width": "10%", "targets": 0, "oderable": false },
+                                                 { "width": "15%", "targets": 1, "oderable": false },
+                                                 { "width": "15%", "targets": 2, "oderable": false },
+                                                 { "width": "15%", "targets": 3, "oderable": false },
+                                                 { "width": "15%", "targets": 4, "oderable": false },
+                                                 { "width": "15%", "targets": 5, "oderable": false },
+                                                 { "width": "15%", "targets": 6, "oderable": false },
+
+                               ],
+
+                              "columns": [
+                                           { "data": "Id", "name":"CId"},
+                                           { "data": "name", "name":"Cname"},
+                                           { "data": "email", "name":"Cemail"},
+                                           { "data": "DateOfBirth", "name":"CDateOfBirth"},
+                                           {
+                                             "data": "Experience", "name": "CExperience",
+                                             "render": function (data) {
+                                                      if (data == 'Experience') {
+                                                           return '<label class=" text-primary">Experience</label>';
+                                                      } else {
+                                                            return '<label class=" text-danger">Fresher</label>';
+                                                      }
+                                             }
+                                           },
+
+                                           { "data":"gender", "name":"Cgender"},
+                                           { "data": "address", "name":"Caddress"},
+                              ]
+                        });
+                    });
+
+                </script>
+
+
+
+
+
+            }
+
+
+        </div>
+    </div>
+</div>
+
+
+
+
